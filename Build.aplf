@@ -1,0 +1,9 @@
+ r←Build folder;parent
+
+ r←⊂'Building from ',folder
+ parent←1⊃⎕NPARTS folder
+
+ r,←⊂⎕SE.Link.Create'#'folder
+ r,←⊂⎕SE.Link.Create'#.DateTime'(parent,'/DateTime')
+
+ r←⍪r

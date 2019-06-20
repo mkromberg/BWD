@@ -1,0 +1,8 @@
+ r←n BirthWeekDays(year month day);years;bdays
+⍝ Given a birth date, return the weekday of that birthday for the next 10 years
+
+ years←(¯1+1⊃⎕TS)+⍳n      ⍝ Next n years
+ bdays←years,¨⊂month day  ⍝ Next n birthdays
+ r←years,⍪DayNames[#.DateTime.WeekDay¨bdays]
+
+ ⍝ Morten was here
