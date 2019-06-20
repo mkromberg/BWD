@@ -1,9 +1,15 @@
- r←Build folder;parent
-
+ r←Build folder;parent;options
+⍝ comment
  r←⊂'Building from ',folder
  parent←1⊃⎕NPARTS folder
 
- r,←⊂⎕SE.Link.Create'#'folder
- r,←⊂⎕SE.Link.Create'#.DateTime'(parent,'/DateTime')
+ options←⎕NS''           ⍝ namespace to contain options
+ options.source←'dir'    ⍝ use directory as source (not workspace)
+ options.watch←'both'    ⍝ after linking, synchronise in both directions
+
+ r,←⊂options ⎕SE.Link.Create'#'folder
+
+ options.watch←'none'    ⍝ Do not synchronise "dependency"
+ r,←⊂options ⎕SE.Link.Create'#.DateTime'(parent,'/DateTime/APLSource')
 
  r←⍪r
